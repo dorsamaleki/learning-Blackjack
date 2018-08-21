@@ -4,18 +4,44 @@
 //
 
 
+//card variables
+
 let suits = ["Diamond", "Hearts", "Spades", "Clubs"];
 
 let values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "King", "Queen", "Jack"];
 
 
+//DOM variables
+
 let textArea = document.getElementById('text-area');
+
 let newGameButton = document.getElementById('new-game-button');
+
 let hitButton = document.getElementById('hit-button');
+
 let stayButton = document.getElementById('stay-button');
 
 
+//Game variables 
+
+let Deck = createDeck();
+
 let gameStarted = false;
+
+let playerCards = [getNextCard(), getNextCard()];
+
+let DealerCards = [getNextCard(), getNextCard()];
+
+//karte object
+
+/*console.log(playerCards);
+console.log(DealerCards);
+kart haro mide vali object
+*/
+
+ 
+
+
 
 showStatus();
 
@@ -23,9 +49,21 @@ newGameButton.addEventListener('click',function(){
 
   gameStarted = true;
   showStatus();
+
 });
 
 
+
+//work on ......
+
+
+hitButton.addEventListener('click',function(){
+
+  playerCards.push(getNextCard());
+  
+  showStatus();
+
+});
 
 
 
@@ -34,8 +72,8 @@ newGameButton.addEventListener('click',function(){
 function showStatus(){
 
 
-  if (!gameStarted){
-
+  if(!gameStarted){
+  
     hitButton.style.display = 'none';
     stayButton.style.display = 'none';
 
@@ -48,8 +86,41 @@ function showStatus(){
     newGameButton.style.display = 'none';
 
 
+
+    let playerCardsString = ''; //ye stringe
+
+    for (let i = 0; i < playerCards.length; i++){
+      
+      playerCardsString = playerCardsString + " \n " + getCardString(playerCards[i]); 
+
+    }
+
+
+    //console.log(playerCardsString);
+
+
+    let DealerCardsString = '';
+
+    for (let i = 0; i < DealerCards.length; i++){
+      
+      DealerCardsString = DealerCardsString + " \n " + getCardString(DealerCards[i]);
+
+    }
+
+    //in balayia function nadash avordim too in tabe 
+
+
+
+//console.log(DealerCardsString);
+
+
     textArea.innerText = "Dealer Cards : " + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" + "\n" +
                         "player Cards : " + playerCardsString + "\n" + "player score :" + getPlayerScore();
+
+
+
+
+
 
 
   }
@@ -84,8 +155,6 @@ function createDeck(){
 
 }
 
-
-let Deck = createDeck();
 
 
 function getCardString(card){
@@ -132,39 +201,9 @@ function getNextCard(){
 
 
 
-let playerCards = [getNextCard(), getNextCard()];
-
-let DealerCards = [getNextCard(), getNextCard()];
-
-/*console.log(playerCards);
-console.log(DealerCards);
-kart haro mide vali object
-*/
+//here
 
 
-let playerCardsString = ''; //ye stringe
-
-for (let i = 0; i < playerCards.length; i++){
-  
-  playerCardsString = playerCardsString + " \n " + getCardString(playerCards[i]); 
-
-}
-
-
-//console.log(playerCardsString);
-
-
-let DealerCardsString = '';
-
-for (let i = 0; i < DealerCards.length; i++){
-  
-  DealerCardsString = DealerCardsString + " \n " + getCardString(DealerCards[i]);
-
-}
-
-
-
-//console.log(DealerCardsString);
 
 
 
@@ -236,10 +275,6 @@ function getDealerScore(){
   let DealerScore = getCardNumericValue(DealerCards[0]) + getCardNumericValue(DealerCards[1]) ;
   return DealerScore;
 }
-
-
-
-
 
 
 
