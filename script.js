@@ -24,6 +24,8 @@ let stayButton = document.getElementById('stay-button');
 
 //Game variables 
 
+let playerScore = 0;
+
 let Deck = createDeck();
 
 let gameStarted = false;
@@ -54,14 +56,18 @@ newGameButton.addEventListener('click',function(){
 
 
 
-//work on ......
+
 
 
 hitButton.addEventListener('click',function(){
 
   playerCards.push(getNextCard());
-  
+
+ // updatePlayerScore();
+
   showStatus();
+
+//  textArea.innerText = updatePlayerScore();
 
 });
 
@@ -113,9 +119,15 @@ function showStatus(){
 
 //console.log(DealerCardsString);
 
+    
+
+
+
+
+
 
     textArea.innerText = "Dealer Cards : " + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" + "\n" +
-                        "player Cards : " + playerCardsString + "\n" + "player score :" + getPlayerScore();
+                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore(); 
 
 
 
@@ -263,12 +275,16 @@ console.log(test);*/
 
 //console.log(getScore());
 
+//tt
+/*function getPlayerScore(){
 
-function getPlayerScore(){
+  playerScore = getCardNumericValue(playerCards[0]) + getCardNumericValue(playerCards[1]) ;
 
-  let playerScore = getCardNumericValue(playerCards[0]) + getCardNumericValue(playerCards[1]) ;
   return playerScore;
-}
+}*/
+
+
+
 
 function getDealerScore(){
 
@@ -277,5 +293,22 @@ function getDealerScore(){
 }
 
 
+
+
+  
+function updatePlayerScore(){
+
+
+  playerScore = 0;
+
+  for (let i = 0; i < playerCards.length;i++ ){
+
+  
+
+    playerScore = playerScore + getCardNumericValue(playerCards[i]);
+  }
+  //console.log(playerScore);
+  return playerScore;
+}
 
 
