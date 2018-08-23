@@ -41,6 +41,8 @@ console.log(DealerCards);
 kart haro mide vali object
 */
 
+let gameOver = false;
+
  
 
 
@@ -61,16 +63,30 @@ newGameButton.addEventListener('click',function(){
 
 hitButton.addEventListener('click',function(){
 
+  
+
   playerCards.push(getNextCard());
 
- // updatePlayerScore();
+  checkForEndOfGame();
 
   showStatus();
 
-//  textArea.innerText = updatePlayerScore();
+
 
 });
 
+
+
+stayButton.addEventListener('click',function(){
+
+  gameOver = true; 
+
+  showStatus();
+  
+
+
+
+});
 
 
 
@@ -85,7 +101,7 @@ function showStatus(){
 
   }
 
-  else if (gameStarted){
+  else if (gameStarted && !gameOver ){
 
     hitButton.style.display = 'inline';
     stayButton.style.display = 'inline';
@@ -127,13 +143,21 @@ function showStatus(){
 
 
     textArea.innerText = "Dealer Cards : " + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" + "\n" +
-                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore(); 
+                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore();
 
 
+    
 
 
+  }
 
 
+  if(gameOver){
+    
+    hitButton.style.display = "none";
+    stayButton.style.display = "none";
+
+    console.log("hi");
 
   }
 
@@ -310,5 +334,24 @@ function updatePlayerScore(){
   //console.log(playerScore);
   return playerScore;
 }
+
+
+
+
+
+function checkForEndOfGame(){
+
+  if (playerScore > 21){
+
+    gameOver = true; 
+  }
+
+  return gameOver;
+
+
+}
+
+
+
 
 
