@@ -114,8 +114,8 @@ function showStatus(){
 
 
 
-    textArea.innerText = "Dealer Cards : " + "\n" + getCardString(DealerCards[1]) + "\n" + "\n" +
-                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore();
+    textArea.innerText = "Dealer Cards : " + "\n" + getCardString(DealerCards[0]) + "\n" + "\n" +
+                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore() + "\n";
 
   
   }
@@ -126,7 +126,17 @@ function showStatus(){
     hitButton.style.display = "none";
     stayButton.style.display = "none";
 
+    textArea.innerText += "\n second Dealer card : \n ";
 
+
+    textArea.innerText += getCardString(DealerCards[1]);
+                          
+    textArea.innerText += "\n";
+    textArea.innerText += "Dealer score :";
+    textArea.innerText += getDealerScore();
+
+
+                      
 
 
   }
