@@ -32,24 +32,17 @@ let gameStarted = false;
 
 let playerCards = [getNextCard(), getNextCard()];
 
-let DealerCards = [getNextCard(), getNextCard()];
-
-//karte object
-
-/*console.log(playerCards);
-console.log(DealerCards);
-kart haro mide vali object
-*/
+let DealerCards = [getNextCard(), getNextCard()]; //karte object
 
 let gameOver = false;
 
  
 
 
-
 showStatus();
 
-newGameButton.addEventListener('click',function(){
+
+newGameButton.addEventListener('click', function(){
 
   gameStarted = true;
   showStatus();
@@ -58,20 +51,12 @@ newGameButton.addEventListener('click',function(){
 
 
 
-
-
-
 hitButton.addEventListener('click',function(){
-
-  
 
   playerCards.push(getNextCard());
 
-  checkForEndOfGame();
 
   showStatus();
-
-
 
 });
 
@@ -83,9 +68,6 @@ stayButton.addEventListener('click',function(){
 
   showStatus();
   
-
-
-
 });
 
 
@@ -101,7 +83,7 @@ function showStatus(){
 
   }
 
-  else if (gameStarted && !gameOver ){
+  else if (gameStarted){
 
     hitButton.style.display = 'inline';
     stayButton.style.display = 'inline';
@@ -118,9 +100,6 @@ function showStatus(){
     }
 
 
-    //console.log(playerCardsString);
-
-
     let DealerCardsString = '';
 
     for (let i = 0; i < DealerCards.length; i++){
@@ -133,37 +112,29 @@ function showStatus(){
 
 
 
-//console.log(DealerCardsString);
-
-    
 
 
-
-
-
-
-    textArea.innerText = "Dealer Cards : " + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" + "\n" +
+    textArea.innerText = "Dealer Cards : " + "\n" + getCardString(DealerCards[1]) + "\n" + "\n" +
                         "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore();
 
-
-    
-
-
+  
   }
 
 
-  if(gameOver){
+  if(gameOver || playerScore > 21){
     
     hitButton.style.display = "none";
     stayButton.style.display = "none";
 
-    console.log("hi");
+    textArea.innerTexxt.replace("Dealer Cards : " + "\n" + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" +
+                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore());
+
 
   }
 
 }
 
-//show status badan 
+
 
 
 function createDeck(){
@@ -193,20 +164,13 @@ function createDeck(){
 
 
 
+
 function getCardString(card){
 
   return card.value + " of " + card.suit;
 
 }
 
-
-/*for(let i = 0; i < Deck.length; i++){
-
-  console.log(Deck[i]);
-
-}
-test khorojie stringe karta
-*/
 
 
 function shuffleDeck(Deck){
@@ -225,8 +189,6 @@ function shuffleDeck(Deck){
 
 
 
-
-
 function getNextCard(){
 
   shuffleDeck(Deck);
@@ -234,12 +196,6 @@ function getNextCard(){
   return Deck.shift();
 
 }
-
-
-
-//here
-
-
 
 
 
@@ -283,36 +239,10 @@ function getCardNumericValue(card){
 
 
 
-/* bara teste tabe bala 
-
-let test = getCardNumericValue(playerCards[0]);
-console.log(test);*/
-
-
-/*function getScore(){
-
-  let playerScore = getCardNumericValue(playerCards[0]) + getCardNumericValue(playerCards[1]) ;
-  let DealerScore = getCardNumericValue(DealerCards[0]) + getCardNumericValue(DealerCards[1]) ;
-//  console.log(playerScore);
-
-}*/
-
-//console.log(getScore());
-
-//tt
-/*function getPlayerScore(){
-
-  playerScore = getCardNumericValue(playerCards[0]) + getCardNumericValue(playerCards[1]) ;
-
-  return playerScore;
-}*/
-
-
-
-
 function getDealerScore(){
 
   let DealerScore = getCardNumericValue(DealerCards[0]) + getCardNumericValue(DealerCards[1]) ;
+ 
   return DealerScore;
 }
 
@@ -333,22 +263,6 @@ function updatePlayerScore(){
   }
   //console.log(playerScore);
   return playerScore;
-}
-
-
-
-
-
-function checkForEndOfGame(){
-
-  if (playerScore > 21){
-
-    gameOver = true; 
-  }
-
-  return gameOver;
-
-
 }
 
 
