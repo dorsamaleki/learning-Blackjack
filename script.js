@@ -126,8 +126,7 @@ function showStatus(){
     hitButton.style.display = "none";
     stayButton.style.display = "none";
 
-    textArea.innerTexxt.replace("Dealer Cards : " + "\n" + DealerCardsString + "\n" + "Dealer score:" + getDealerScore() + "\n" +
-                        "player Cards : " + playerCardsString + "\n" + "player score :" + updatePlayerScore());
+
 
 
   }
