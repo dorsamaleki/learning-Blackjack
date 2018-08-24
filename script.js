@@ -119,9 +119,9 @@ function showStatus(){
     }
 
 
+    DealerCardsString ="";
 
-
-    for (let i = 0; i < DealerCards.length; i++){
+    for (let i = 2; i < DealerCards.length; i++){
       
       DealerCardsString = DealerCardsString + " \n " + getCardString(DealerCards[i]);
 
@@ -149,7 +149,9 @@ function showStatus(){
     textArea.innerText += getCardString(DealerCards[1]);                       
     textArea.innerText += "\n Dealer score :";
     textArea.innerText += updateDealerScore();
-    textArea.innerText += "\n \n";
+    textArea.innerText += "\n \n";  
+    textArea.innerText += DealerCardsString;
+    textArea.innerText += "\n \n"; 
 
     winner();
 
@@ -299,7 +301,7 @@ function updatePlayerScore(){
 
     playerScore = playerScore + getCardNumericValue(playerCards[i]);
   }
-  //console.log(playerScore);
+
   return playerScore;
 }
 
