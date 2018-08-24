@@ -38,8 +38,10 @@ let DealerCards = [getNextCard(), getNextCard()]; //karte object
 let gameOver = false;
 
 let DealerWin = false;
-//let playerWin = false;
 
+let playerCardsString = ''; //ye stringe
+
+let DealerCardsString = '';
  
 
 
@@ -71,6 +73,19 @@ stayButton.addEventListener('click',function(){
   gameOver = true; 
 
   showStatus();
+
+  while (DealerScore < playerScore && playerScore <= 21 && DealerScore <= 21){
+
+    
+
+    DealerCards.push(getNextCard());
+
+    
+    updateDealerScore();
+
+  }
+  textArea.innerText += DealerCardsString;
+  showStatus(); 
   
 });
 
@@ -95,7 +110,7 @@ function showStatus(){
 
 
 
-    let playerCardsString = ''; //ye stringe
+    playerCardsString ="";
 
     for (let i = 0; i < playerCards.length; i++){
       
@@ -104,7 +119,7 @@ function showStatus(){
     }
 
 
-    let DealerCardsString = '';
+
 
     for (let i = 0; i < DealerCards.length; i++){
       
@@ -137,10 +152,11 @@ function showStatus(){
     textArea.innerText += "\n \n";
 
     winner();
-    
+
     if (DealerWin){
       textArea.innerText += 'DEALER WINS !';
     }
+
     else {
       textArea.innerText += 'YOU WIN';
     }
@@ -289,53 +305,28 @@ function updatePlayerScore(){
 
 
 
-  
-//work on .................................................................................................................
+
 
 function winner(){
 
-  if (DealerScore >= playerScore || playerScore > 21){
 
-    DealerWin = true;
-//    playerWin = false;
-
-  }
-
-/*  else if (playerScore == 21) {
-    
-//    playerWin = true;
-    DealerWin = false;*/
-    
-  return DealerWin;
-}
-// age hichkoodom azina nabood hanoz natije bazi moshakhas nis Dealer mitoone kart bgire
-
-
-/*  while (DealerScore < playerScore && playerScore <= 21 && DealerScore <= 21){
-
-    DealerCards.push(getNextCard());
-    updateDealerScore();
-
-  }
-
-  else if (DealerScore > 21){
+  if (DealerScore > 21){
    
-    playerWin = true;
+ 
     DealerWin = false;
     
   }
 
+  else if (DealerScore >= playerScore || playerScore > 21){
 
-  else if (DealerScore >= playerScore){
- 
     DealerWin = true;
- 
+
+
   }
 
-*/
+  return DealerWin;
 
-
-
+}
 
 
 
