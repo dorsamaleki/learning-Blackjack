@@ -25,6 +25,7 @@ let stayButton = document.getElementById('stay-button');
 //Game variables 
 
 let playerScore = 0;
+let DealerScore = 0;
 
 let Deck = createDeck();
 
@@ -35,6 +36,9 @@ let playerCards = [getNextCard(), getNextCard()];
 let DealerCards = [getNextCard(), getNextCard()]; //karte object
 
 let gameOver = false;
+
+let DealerWin = false;
+//let playerWin = false;
 
  
 
@@ -127,15 +131,19 @@ function showStatus(){
     stayButton.style.display = "none";
 
     textArea.innerText += "\n second Dealer card : \n ";
+    textArea.innerText += getCardString(DealerCards[1]);                       
+    textArea.innerText += "\n Dealer score :";
+    textArea.innerText += updateDealerScore();
+    textArea.innerText += "\n \n";
 
-
-    textArea.innerText += getCardString(DealerCards[1]);
-                          
-    textArea.innerText += "\n";
-    textArea.innerText += "Dealer score :";
-    textArea.innerText += getDealerScore();
-
-
+    winner();
+    
+    if (DealerWin){
+      textArea.innerText += 'DEALER WINS !';
+    }
+    else {
+      textArea.innerText += 'YOU WIN';
+    }
                       
 
 
@@ -248,23 +256,28 @@ function getCardNumericValue(card){
 
 
 
-function getDealerScore(){
 
-  let DealerScore = getCardNumericValue(DealerCards[0]) + getCardNumericValue(DealerCards[1]) ;
- 
-  return DealerScore;
+function updateDealerScore(){
+
+  DealerScore = 0;
+
+  for (let i = 0; i < DealerCards.length; i++ ){
+
+    DealerScore = DealerScore + getCardNumericValue(DealerCards[i]);
+
+
+  }
+  return DealerScore;  
 }
 
 
 
-
-  
 function updatePlayerScore(){
 
 
   playerScore = 0;
 
-  for (let i = 0; i < playerCards.length;i++ ){
+  for (let i = 0; i < playerCards.length; i++ ){
 
   
 
@@ -273,6 +286,54 @@ function updatePlayerScore(){
   //console.log(playerScore);
   return playerScore;
 }
+
+
+
+  
+//work on .................................................................................................................
+
+function winner(){
+
+  if (DealerScore >= playerScore || playerScore > 21){
+
+    DealerWin = true;
+//    playerWin = false;
+
+  }
+
+/*  else if (playerScore == 21) {
+    
+//    playerWin = true;
+    DealerWin = false;*/
+    
+  return DealerWin;
+}
+// age hichkoodom azina nabood hanoz natije bazi moshakhas nis Dealer mitoone kart bgire
+
+
+/*  while (DealerScore < playerScore && playerScore <= 21 && DealerScore <= 21){
+
+    DealerCards.push(getNextCard());
+    updateDealerScore();
+
+  }
+
+  else if (DealerScore > 21){
+   
+    playerWin = true;
+    DealerWin = false;
+    
+  }
+
+
+  else if (DealerScore >= playerScore){
+ 
+    DealerWin = true;
+ 
+  }
+
+*/
+
 
 
 
